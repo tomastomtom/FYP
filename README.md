@@ -1,13 +1,4 @@
 # FYP
 IEFYP2018
-<<<<<<< HEAD
-[Leung Chun Kit 11550]
+[Leung Chun Kit 1155079718 test1 ]
 [TSUI Yiu Ming 11550783810]
-=======
-[Leung Chun Kit 1155079718]
-<<<<<<< HEAD
-[TSUI Yiu Ming 1155078]
->>>>>>> tomtom
-=======
-[TSUI Yiu 1155078381]
->>>>>>> tomtom
