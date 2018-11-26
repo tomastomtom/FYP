@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html>
 
@@ -65,8 +66,25 @@ textarea {
   </style>
 	<script src="fsm.js"></script>
 	<script>
+=======
 
+>>>>>>> 5fbef9bc1e05bcd22e224ed301c3d87f16e3957b
 
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>IE FYP by Henry And Tom</title>
+    <script src = "mapping.js">
+    </script>
+  </head>
+
+  <style>
+    body{
+      text-align : center;
+      background : grey;
+    }
+
+<<<<<<< HEAD
 		if (typeof btoa == 'undefined') {
     function btoa(str) {
         var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
@@ -87,9 +105,13 @@ textarea {
             encoded[encoded.length] = chars.charAt(i3);
         }
         return encoded.join('');
+=======
+    h1{
+	    font: bold italic 50px , serif;
+>>>>>>> 5fbef9bc1e05bcd22e224ed301c3d87f16e3957b
     }
-}
 
+<<<<<<< HEAD
 	</script>
 </head>
 
@@ -103,3 +125,35 @@ textarea {
 </body>
 
 </html>
+=======
+    canvas {
+    	display: block;
+    	max-width: 800px;
+    	background: white;
+    	border-radius: 20px;
+    	margin: 10px auto;
+      float:left;
+    }
+
+  </style>
+
+  <body>
+    <h1>FSM Designer</h1>
+
+      <canvas  oncontextmenu="return false;" id="canvas" width="800" height="800">
+          <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
+      </canvas>
+
+   <font id = "labell" size = 30>Label1</font></label><br>
+    <textarea name="nodeprogram" rows="20" cols="80"></textarea><br>
+    <label id= "soursecode"><font size = 30px>source Code</font></label><br>
+    <form name= "coding_area">
+      <textarea name="coding" rows="25" cols="80"></textarea><br>
+      <button onclick="saving()" type="button" name="Save">Save</button>
+      <button onclick="loading()" type="button" name="load">Load</button>
+      <button onclick="clearcanvas()" type="button" name="clear">Clear</button>
+      <button onclick="changefont()" type="button" name="change">Change</button>
+    </form>
+  </body>
+</html>
+>>>>>>> 5fbef9bc1e05bcd22e224ed301c3d87f16e3957b

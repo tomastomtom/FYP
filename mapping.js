@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*Program Synthesis using Interactive State Diagrams v0.0.1
 Made by TSUI, Yiu Ming and LEUNG, Chun Kit
 for the Final Year Project
@@ -32,6 +33,8 @@ for the requirement of BEng Information Engineering, CUHK*/
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
 */
+=======
+>>>>>>> 5fbef9bc1e05bcd22e224ed301c3d87f16e3957b
 
 function Link(a, b) {
   this.nodeA = a;
@@ -379,6 +382,7 @@ TemporaryLink.prototype.draw = function(c) {
   drawArrow(c, this.to.x, this.to.y, Math.atan2(this.to.y - this.from.y, this.to.x - this.from.x));
 };
 
+<<<<<<< HEAD
 // draw using this instead of a canvas and call toLaTeX() afterward
 function ExportAsLaTeX() {
   this._points = [];
@@ -617,6 +621,10 @@ function textToXML(text) {
   return result;
 }
 
+=======
+var greekLetterNames = [ 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega' ];
+
+>>>>>>> 5fbef9bc1e05bcd22e224ed301c3d87f16e3957b
 function drawArrow(c, x, y, angle) {
   var dx = Math.cos(angle);
   var dy = Math.sin(angle);
@@ -632,6 +640,7 @@ function canvasHasFocus() {
 }
 
 function drawText(c, originalText, x, y, angleOrNull, isSelected) {
+<<<<<<< HEAD
   text = convertLatexShortcuts(originalText);
   c.font = '20px "Times New Roman", serif';
   var width = c.measureText(text).width;
@@ -665,6 +674,41 @@ function drawText(c, originalText, x, y, angleOrNull, isSelected) {
       c.stroke();
     }
   }
+=======
+	text =originalText;
+	c.font = '20px "Times New Roman", serif';
+	var width = c.measureText(text).width;
+
+	// center the text
+	x -= width / 2;
+
+	// position the text intelligently if given an angle
+	if(angleOrNull != null) {
+		var cos = Math.cos(angleOrNull);
+		var sin = Math.sin(angleOrNull);
+		var cornerPointX = (width / 2 + 5) * (cos > 0 ? 1 : -1);
+		var cornerPointY = (10 + 5) * (sin > 0 ? 1 : -1);
+		var slide = sin * Math.pow(Math.abs(sin), 40) * cornerPointX - cos * Math.pow(Math.abs(cos), 10) * cornerPointY;
+		x += cornerPointX - sin * slide;
+		y += cornerPointY + cos * slide;
+	}
+
+	// draw text and caret (round the coordinates so the caret falls on a pixel)
+	if('advancedFillText' in c) {
+		c.advancedFillText(text, originalText, x + width / 2, y, angleOrNull);
+	} else {
+		x = Math.round(x);
+		y = Math.round(y);
+		c.fillText(text, x, y + 6);
+		if(isSelected && caretVisible && canvasHasFocus() && document.hasFocus()) {
+			x += width;
+			c.beginPath();
+			c.moveTo(x, y - 10);
+			c.lineTo(x, y + 10);
+			c.stroke();
+		}
+	}
+>>>>>>> 5fbef9bc1e05bcd22e224ed301c3d87f16e3957b
 }
 
 var caretTimer;
@@ -952,6 +996,7 @@ function crossBrowserRelativeMousePos(e) {
   };
 }
 
+<<<<<<< HEAD
 function output(text) {
   var element = document.getElementById('output');
   element.style.display = 'block';
@@ -989,6 +1034,8 @@ function saveAsLaTeX() {
   output(texData);
 }
 
+=======
+>>>>>>> 5fbef9bc1e05bcd22e224ed301c3d87f16e3957b
 function det(a, b, c, d, e, f, g, h, i) {
   return a * e * i + b * f * g + c * d * h - a * f * h - b * d * i - c * e * g;
 }
@@ -1010,6 +1057,7 @@ function fixed(number, digits) {
 }
 
 function restoreBackup() {
+<<<<<<< HEAD
   if (!localStorage || !JSON) {
     return;
   }
@@ -1107,3 +1155,141 @@ function saveBackup() {
 
   localStorage['fsm'] = JSON.stringify(backup);
 }
+=======
+	if(!localStorage || !JSON) {
+		return;
+	}
+
+	try {
+		const context = canvas.getContext('2d');
+		context.clearRect(0, 0, canvas.width, canvas.height);
+			nodes = [];
+			links = [];
+
+		var backup = JSON.parse(localStorage['fsm']);
+
+		for(var i = 0; i < backup.nodes.length; i++) {
+			var backupNode = backup.nodes[i];
+			var node = new Node(backupNode.x, backupNode.y);
+			node.isAcceptState = backupNode.isAcceptState;
+			node.text = backupNode.text;
+			nodes.push(node);
+		}
+		for(var i = 0; i < backup.links.length; i++) {
+			var backupLink = backup.links[i];
+			var link = null;
+			if(backupLink.type == 'SelfLink') {
+				link = new SelfLink(nodes[backupLink.node]);
+				link.anchorAngle = backupLink.anchorAngle;
+				link.text = backupLink.text;
+			} else if(backupLink.type == 'StartLink') {
+				link = new StartLink(nodes[backupLink.node]);
+				link.deltaX = backupLink.deltaX;
+				link.deltaY = backupLink.deltaY;
+				link.text = backupLink.text;
+			} else if(backupLink.type == 'Link') {
+				link = new Link(nodes[backupLink.nodeA], nodes[backupLink.nodeB]);
+				link.parallelPart = backupLink.parallelPart;
+				link.perpendicularPart = backupLink.perpendicularPart;
+				link.text = backupLink.text;
+				link.lineAngleAdjust = backupLink.lineAngleAdjust;
+			}
+			if(link != null) {
+				links.push(link);
+			}
+		}
+	} catch(e) {
+		localStorage['fsm'] = '';
+		alert("Reload the program!");
+	}
+}
+
+function saveBackup() {
+	if(!localStorage || !JSON) {
+		return;
+	}
+
+	var backup = {
+		'nodes': [],
+		'links': [],
+	};
+	for(var i = 0; i < nodes.length; i++) {
+		var node = nodes[i];
+		var backupNode = {
+			'x': node.x,
+			'y': node.y,
+			'text': node.text,
+			'isAcceptState': node.isAcceptState,
+		};
+		backup.nodes.push(backupNode);
+	}
+	for(var i = 0; i < links.length; i++) {
+		var link = links[i];
+		var backupLink = null;
+		if(link instanceof SelfLink) {
+			backupLink = {
+				'type': 'SelfLink',
+				'node': nodes.indexOf(link.node),
+				'text': link.text,
+				'anchorAngle': link.anchorAngle,
+			};
+		} else if(link instanceof StartLink) {
+			backupLink = {
+				'type': 'StartLink',
+				'node': nodes.indexOf(link.node),
+				'text': link.text,
+				'deltaX': link.deltaX,
+				'deltaY': link.deltaY,
+			};
+		} else if(link instanceof Link) {
+			backupLink = {
+				'type': 'Link',
+				'nodeA': nodes.indexOf(link.nodeA),
+				'nodeB': nodes.indexOf(link.nodeB),
+				'text': link.text,
+				'lineAngleAdjust': link.lineAngleAdjust,
+				'parallelPart': link.parallelPart,
+				'perpendicularPart': link.perpendicularPart,
+			};
+		}
+		if(backupLink != null) {
+			backup.links.push(backupLink);
+		}
+	}
+
+	localStorage['fsm'] = JSON.stringify(backup);
+}
+
+
+function loading()
+{
+	var text = localStorage['fsm'];
+  var allcookies = localStorage.getItem('GetData');
+  document.forms.coding_area.coding.value = text;
+}
+
+
+function saving()
+{
+		var text = document.forms.coding_area.coding.value;
+		localStorage['fsm'] = text;
+		restoreBackup();
+		localStorage['fsm'] = '';
+}
+
+function clearcanvas()
+{
+	const context = canvas.getContext('2d');
+	context.clearRect(0, 0, canvas.width, canvas.height);
+		nodes = [];
+		links = [];
+		localStorage['fsm'] = '';
+}
+
+ function changefont() {
+	alert ("Fucking RAW!");
+	var cirname = document.getElementById("labell");
+	cirname.innerHTML = "Comeon";
+	alert ("Fucking RAW!");
+}
+>>>>>>> 5fbef9bc1e05bcd22e224ed301c3d87f16e3957b
