@@ -1088,5 +1088,5 @@ function saveBackup() {
 		}
 	}
 
-	localStorage['fsm'] = JSON.stringify(backup);
+	localStorage['fsm'] = JSON.stringify(backup); 
 }
