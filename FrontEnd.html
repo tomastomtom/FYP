@@ -24,23 +24,27 @@
     	background: white;
     	border-radius: 20px;
     	margin: 10px auto;
+      float:left;
     }
 
   </style>
 
   <body>
     <h1>FSM Designer</h1>
-    <div class = "map">
-      <canvas oncontextmenu="return false;" id="canvas" width="800" height="800">
+
+      <canvas  oncontextmenu="return false;" id="canvas" width="800" height="800">
           <span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
       </canvas>
-    </div>
 
+   <font id = "labell" size = 30>Label1</font></label><br>
+    <textarea name="nodeprogram" rows="20" cols="80"></textarea><br>
+    <label id= "soursecode"><font size = 30px>source Code</font></label><br>
     <form name= "coding_area">
-      <textarea name="coding" rows="8" cols="80"></textarea><br>
+      <textarea name="coding" rows="25" cols="80"></textarea><br>
       <button onclick="saving()" type="button" name="Save">Save</button>
       <button onclick="loading()" type="button" name="load">Load</button>
+      <button onclick="clearcanvas()" type="button" name="clear">Clear</button>
+      <button onclick="changefont()" type="button" name="change">Change</button>
     </form>
-
   </body>
 </html>
