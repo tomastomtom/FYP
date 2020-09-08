@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+
+<head>
+	<title>IEFYP2019</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="layout.css">
+
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<h1>FSM Designer</h1>
+	<div class="container">
+		<canvas id="canvas" width=800 height=700>
+			<span class="error">Your browser does not support<br>the HTML5 &lt;canvas&gt; element</span>
+		</canvas>
+
+		<div id="actionArea">
+			<div class="label">Selected <span id="selectedObjectName"></span></div>
+			<div id="entryActionContainer">
+				<div class="plus_container">
+					<span id="plusButton">+</span>
+				</div>
+			</div>
+			<div>
+				<button type="button" name="button" id="actionApplyButton">Apply</button>
+				<button type="button" name="button" id="actionResetButton">Reset</button>
+			</div>
+		</div>
+
+		<button type="button" name="button" id="clear">Clear</button>
+		<!-- <button type=" button" name="save" id="save">Save</button>
+		<button type="button" name="load" id="load">Load</button> -->
+		<button type="submit" name="compile" id="compile" form="fsmForm">Compile</button>
+
+	</div>
+
+	<div id="popUpWindowContainer">
+		<!-- Modal content -->
+		<div class="popup-header">
+			<span id="closeButton">&times;</span>
+			<h2 id="popup-title"></h2>
+		</div>
+		<div id="popup-content">
+			<ul id="popup-content-list">
+
+			</ul>
+		</div>
+	</div>
+
+	<form id="fsmForm" action="fsm-process.php" method="post">
+	</form>
+
+	<script src="mapping.js"></script>
+</body>
+
+</html>
