@@ -6,7 +6,7 @@ Made by TSUI, Yiu Ming and LEUNG, Chun Kit
 for the Final Year Project  
 for the requirement of BEng Information Engineering, CUHK  
 
-DISCLAIMER: This software is based on the work made previously by Evan Wallace licensed in MIT License as below. We hereby appreciate his work.  
+DISCLAIMER: This software is based on the work made previously by Evan Wallace licensed in MIT License as below. We hereby appreciate his work. Moreover, the library of Arduino is generously provided by Dr. Marco HO. 
 
  Finite State Machine Designer (http://madebyevan.com/fsm/)
  License: MIT License (see below)
